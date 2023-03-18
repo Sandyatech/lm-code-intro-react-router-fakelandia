@@ -1,25 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Link, BrowserRouter } from 'react-router-dom';
 import './App.css';
-
-import Misdemeanours from '../components/misdemeanours';
-import Home from '../components/home';
-import Confess from '../components/confesstous';
+import Header from '../components/header';
 
 function App() {
     return (
-        <div className="App">
-            <h1>FAKEISLAND JUSTICE DEPARTMENT</h1>
-            <BrowserRouter>
-                <Routes>
-                    <ul>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/missdemeanours" element={<Misdemeanours />} />
-                        <Route path="/confess" element={<Confess />} />
-                    </ul>
-                </Routes>
-            </BrowserRouter>
+        <BrowserRouter>
+        <div>
+                <ul>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/misdemeanours'>MisDemeanours</Link></li>
+                    <li><Link to='/confess'>ConfesstoUS</Link></li>
+                </ul>
+                <hr />
+               <Header />
         </div>
+        </BrowserRouter>
+
     );
 }
 
