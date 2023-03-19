@@ -6,7 +6,7 @@ import Header from '../components/header';
 function App() {
     return (
         <BrowserRouter>
-            <div >
+            <div>
                 <ul className="container">
                     <li><span className="site">FakeLandia<br />Justice<br /> Department </span></li>
                     <li ><Link to='/' className="menu">Home</Link></li>

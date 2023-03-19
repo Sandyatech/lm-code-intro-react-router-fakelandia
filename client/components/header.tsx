@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Misdemeanours from '../components/misdemeanours';
+import MisDemeanours from '../components/misdemeanours';
 import Home from '../components/home';
 import Confess from '../components/confesstous';
 
@@ -10,7 +10,7 @@ const Header = () => {
         <Routes>
 
             <Route path="/" element={<Home />} />
-            <Route path="/misdemeanours" element={<Misdemeanours />} />
+            <Route path="/misdemeanours" element={<MisDemeanours />} />
             <Route path="/confess" element={<Confess />} />
 
         </Routes>
