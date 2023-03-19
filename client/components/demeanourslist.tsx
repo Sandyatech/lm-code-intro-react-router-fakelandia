@@ -1,12 +1,14 @@
 import React from 'react';
 import { Misdemeanour } from '../types/misdemeanours.types'
-const Demeanourslist: React.FC<Misdemeanour> = ({ citizenId, misdemeanour,date}) => {
+import ImageType from './imagetype';
+const Demeanourslist: React.FC<Misdemeanour> = ({citizenId, misdemeanour,date}) => {
     return (
         <div className="demeanour">
             
             <p>{citizenId}</p>
-            <p>{misdemeanour}</p>
             <p>{date}</p>
+            <p>{misdemeanour}</p>
+            <ImageType misdemeanour={misdemeanour} />
          
         </div>
         );
