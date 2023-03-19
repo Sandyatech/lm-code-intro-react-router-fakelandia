@@ -15,7 +15,7 @@ function App() {
                 </ul>
                 <hr />
                 <Header />
-              
+                <div className="footer"> FakeLandia &#169; Sandya</div>
             </div>
         </BrowserRouter>
 
