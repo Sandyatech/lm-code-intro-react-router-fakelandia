@@ -6,15 +6,17 @@ import Header from '../components/header';
 function App() {
     return (
         <BrowserRouter>
-        <div>
-                <ul>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/misdemeanours'>MisDemeanours</Link></li>
-                    <li><Link to='/confess'>ConfesstoUS</Link></li>
+            <div >
+                <ul className="container">
+                    <li><span className="site">FakeLandia<br />Justice<br /> Department </span></li>
+                    <li ><Link to='/' className="menu">Home</Link></li>
+                    <li ><Link to='/misdemeanours' className="menu">MisDemeanours</Link></li>
+                    <li ><Link to='/confess' className="menu">Confess To US</Link></li>
                 </ul>
                 <hr />
-               <Header />
-        </div>
+                <Header />
+              
+            </div>
         </BrowserRouter>
 
     );
