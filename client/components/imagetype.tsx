@@ -10,10 +10,10 @@ const ImageType: React.FC<ImageTypeProps> = ({ misdemeanour }) => {
     useEffect(() => {
         const src = (misdemeanour) => {
             switch (misdemeanour) {
-                case MISDEMEANOURS[0]: setPath("https://picsum.photos/id/100/50/50"); break;
-                case MISDEMEANOURS[1]: setPath("https://picsum.photos/id/200/50/50"); break;
-                case MISDEMEANOURS[2]: setPath("https://picsum.photos/id/300/50/50"); break;
-                case MISDEMEANOURS[3]: setPath("https://picsum.photos/id/400/50/50"); break;
+                case MISDEMEANOURS[0]: setPath("https://picsum.photos/id/100/40/40"); break;
+                case MISDEMEANOURS[1]: setPath("https://picsum.photos/id/200/40/40"); break;
+                case MISDEMEANOURS[2]: setPath("https://picsum.photos/id/300/40/40"); break;
+                case MISDEMEANOURS[3]: setPath("https://picsum.photos/id/400/40/40"); break;
             }
         } 
         src(misdemeanour);
