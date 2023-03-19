@@ -55,3 +55,19 @@ li {
     font-size: 1.5em;
     padding:1em;
 }
+
+.demeanour {
+    display: grid;
+    justify-content:space-around;
+    grid-template-columns: auto auto auto;
+    padding: 1.5em;
+    border: 6px solid var(--deepskyblue);
+    max-width: 80em;
+    min-width: 11.25em;
+    border-radius: 7px;
+    background: var(--yellow);
+    margin-bottom: 1em;
+    box-shadow: 0 4px 8px 0 rgb(13, 59, 102, 0.4);
+    transition: 0.3s;
+    margin: 0.5em;
+}
