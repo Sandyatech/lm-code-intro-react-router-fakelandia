@@ -11,8 +11,8 @@ const DemeanourDropDown: React.FC<DemeanourDropDownProps> = ({demeanourType,setD
     const settings = (value) => { setDemeanourType(value);};
 
     return (<select value={demeanourType} onChange={e => settings(e.target.value)}>
-        {MISDEMEANOURS.map((misdemeanour) =>
-            (<option value={misdemeanour} > {misdemeanour}</option>))}
+        {MISDEMEANOURS.map((misdemeanour, index) =>
+            (<option key={index} value={misdemeanour} > {misdemeanour}</option>))}
     </select>);
 }
 export default DemeanourDropDown;
