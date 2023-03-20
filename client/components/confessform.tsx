@@ -6,11 +6,10 @@ const ConfessForm: React.FC = () => {
     const [reason, setReason] = useState("");
     const [details, setDetails] = useState("");
     const [message, setMessage] = useState("");
+    const [success, setSuccess] = useState<boolean>();
+    const [justTalked, setjustTalked] = useState<boolean>();
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        console.log(subject);
-        console.log(reason);
-        console.log(details);
         try {
             let res = await fetch(`http://localhost:8080/api/confess/`, {
                 method: "POST",
@@ -25,16 +24,15 @@ const ConfessForm: React.FC = () => {
                 }),
             });
             let resJson = await res.json();
+            setMessage(resJson.message);
+            setSuccess(resJson.success);         
             if (res.status === 200) {
                 setSubject("");
                 setReason("");
                 setDetails("");
-                setMessage("User created successfully");
-                console.log(resJson);
-            } else {
-                setMessage("Some error occured");
-                console.log(resJson);
+                setjustTalked(resJson.justTalked);
             }
+    
         } catch (err) {
             console.log(err);
         }
@@ -66,6 +64,7 @@ const ConfessForm: React.FC = () => {
                 <div className="submit">
                     <input type="submit" value="Confess" />
                 </div>
+                <p>{(success==false) && message}</p>
             </form>
         </div>);
 }
