@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
 import { JUST_TALK, MISDEMEANOURS } from "../types/misdemeanours.types";
+import { DemeanoursContext } from "../src/App";
+import { MisdemeanourKind } from '../types/misdemeanours.types'
+
+
 
 const ConfessForm: React.FC = () => {
+    const { demeanours, setDemeanours } = useContext(DemeanoursContext);
     const [subject, setSubject] = useState("");
     const [reason, setReason] = useState("");
     const [details, setDetails] = useState("");
@@ -25,14 +30,21 @@ const ConfessForm: React.FC = () => {
             });
             let resJson = await res.json();
             setMessage(resJson.message);
-            setSuccess(resJson.success);         
+            setSuccess(resJson.success);
             if (res.status === 200) {
+                if ((resJson.success == true) && (resJson.justTalked == false))
+                    setDemeanours([...demeanours, {
+                        citizenId: 1234,
+                        misdemeanour: (reason as MisdemeanourKind),
+                        date: "12345"
+                    }])
                 setSubject("");
                 setReason("");
                 setDetails("");
                 setjustTalked(resJson.justTalked);
+
             }
-    
+
         } catch (err) {
             console.log(err);
         }
@@ -64,7 +76,7 @@ const ConfessForm: React.FC = () => {
                 <div className="submit">
                     <input type="submit" value="Confess" />
                 </div>
-                <p>{(success==false) && message}</p>
+                <p>{(success == false) && message}</p>
             </form>
         </div>);
 }

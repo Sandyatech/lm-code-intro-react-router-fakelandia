@@ -1,22 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Misdemeanour, MisdemeanourKind } from "../types/misdemeanours.types";
 import DemeanoursList from "./demeanourslist";
 import DemeanourDropDown from "./demeanourdropdown"
+import { DemeanoursContext } from "../src/App"
 
 
 const MisDemeanours: React.FC = () => {
-    const [amount, setAmount] = useState<number>(10);
-    const [demeanours, setDemeanours] = useState<Array<Misdemeanour>>([]);
-    const [demeanourType, setDemeanourType] = useState<MisdemeanourKind>('rudeness');
 
-    useEffect(() => {
-        const getMisDemeanours = async (amount: number) => {
-            const apiResponse = await fetch(`http://localhost:8080/api/misdemeanours/${amount}`);
-            const json = await apiResponse.json();
-            setDemeanours(json.misdemeanours);
-        }
-        getMisDemeanours(amount);
-    }, [amount]);
+    const [demeanourType, setDemeanourType] = useState<MisdemeanourKind>('rudeness');
+    const { demeanours, setDemeanours } = useContext(DemeanoursContext);
 
     return (<div>
         <div className="custom-select">
@@ -33,17 +25,18 @@ const MisDemeanours: React.FC = () => {
         </div>
         {demeanours.map((demeanour, index) => {
             if (demeanour.misdemeanour == demeanourType) {
-                return(<DemeanoursList
+                return (<DemeanoursList
                     key={index}
                     citizenId={demeanour.citizenId}
                     misdemeanour={demeanour.misdemeanour}
                     date={demeanour.date}
                 />)
-            }})}
-        
-        </div>);
-    
-    
-    };
+            }
+        })}
+
+    </div>);
+
+
+};
 
 export default MisDemeanours;

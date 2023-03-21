@@ -20,24 +20,24 @@ body {
     list-style: none;
     background: #00BFFF;
 }
+
 li {
     width: 25%;
     text-align: center;
-
 }
+
 .menu {
     display: block;
     font-size: 1.75em;
     text-decoration: none;
     color: white;
-    padding:0.5em;
+    padding: 0.5em;
 }
 
 
-.menu:hover {
+    .menu:hover {
         background: black;
-
-}
+    }
 
 .site {
     font-size: 0.5em;
@@ -91,7 +91,6 @@ li {
     padding: 0;
     margin: 0;
     list-style: none;
-    
 }
 
 select {
@@ -109,13 +108,13 @@ select {
     font-size: 1.25em;
 }
 
-select option {
-    border: 1px solid #000;
-    background: #010;
-}
+    select option {
+        border: 1px solid #000;
+        background: #010;
+    }
 
-img{
-    padding:5px;
+img {
+    padding: 5px;
 }
 
 /*--------Confessionform----------------*/
@@ -134,7 +133,7 @@ img{
     width: 60%;
     text-align: center;
     display: inline-block;
-    padding:6px;
+    padding: 6px;
 }
 
 .col-25 {
@@ -181,12 +180,11 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     float: right;
-
 }
 
-input[type=submit]:hover {
+    input[type=submit]:hover {
         background-color: #000;
-}
+    }
 
 textarea {
     height: 100px;

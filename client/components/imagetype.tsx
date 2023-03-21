@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MisdemeanourKind, MISDEMEANOURS } from '../types/misdemeanours.types'
 
 interface ImageTypeProps {
@@ -15,13 +15,13 @@ const ImageType: React.FC<ImageTypeProps> = ({ misdemeanour }) => {
                 case MISDEMEANOURS[2]: setPath("https://picsum.photos/id/300/40/40"); break;
                 case MISDEMEANOURS[3]: setPath("https://picsum.photos/id/400/40/40"); break;
             }
-        } 
+        }
         src(misdemeanour);
-    },[misdemeanour]);
-    
+    }, [misdemeanour]);
+
     return (
-        <img src={path}></img> 
-        )
+        <img src={path}></img>
+    )
 
 }
 export default ImageType;
