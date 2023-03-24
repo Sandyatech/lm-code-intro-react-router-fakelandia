@@ -1,10 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { JUST_TALK, MISDEMEANOURS } from "../types/misdemeanours.types";
+import React, { useState, useContext, useEffect } from 'react';
 import { DemeanoursContext } from "../src/App";
 import { MisdemeanourKind } from '../types/misdemeanours.types'
+import Subject from "./subject"
+import Details from "./details"
+import Reason from "./reason"
 
+interface FieldErrorCombo {
+    fieldError: string[];
+    setFieldError: (fieldError: string[]) => void;
+}
 
-
+export const FieldErrorContext = React.createContext<FieldErrorCombo | null>(null);
 const ConfessForm: React.FC = () => {
     const { demeanours, setDemeanours } = useContext(DemeanoursContext);
     const [subject, setSubject] = useState("");
@@ -12,7 +18,9 @@ const ConfessForm: React.FC = () => {
     const [details, setDetails] = useState("");
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState<boolean>();
+    const [confessEnable, setConfessEnable] = useState<boolean>(false);
     const [justTalked, setjustTalked] = useState<boolean>();
+    const [fieldError, setFieldError] = useState<string[]>([]);
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         try {
@@ -49,36 +57,35 @@ const ConfessForm: React.FC = () => {
             console.log(err);
         }
     };
+    {/*  useEffect(() => {
+        const setTheError = () => {
+            if ((subject.length == 0) || (reason.length == 0)
+                || (details.length == 0) || (fieldError.length!=0))
+                setConfessEnable(false)
+            else
+                setConfessEnable(true)
+        }
+        setTheError();
+    } , [fieldError]) */}
+    console.log(fieldError?.length);
     return (
-        <div className="confessform">
-            <form onSubmit={onSubmitHandler}>
-                <div className="col-25">
-                    <label> Subject: </label>
-                </div>
-                <div className="col-75">
-                    <input className="col-75" value={subject} name="subject" type="text" onChange={e => setSubject(e.target.value)} />
-                </div>
-                <div className="col-25">
-                    <label> Reason for Contact: </label>
-                </div>
-                <div className="col-75">
-                    <select className="col-75" value={reason} name="reason" onChange={e => setReason(e.target.value)} >
-                        <option value="Select">Select</option>
-                        {MISDEMEANOURS.map((misdemeanour, index) =>
-                            (<option key={index} value={misdemeanour} > {misdemeanour}</option>))}
-                        <option value={JUST_TALK}>{JUST_TALK}</option>
-                    </select>
-                </div>
-                <div className="row">
-                    <textarea name="details" value={details} placeholder="Write Confess Details.." onChange={e => setDetails(e.target.value)}>
-                    </textarea>
-                </div>
-                <div className="submit">
-                    <input type="submit" value="Confess" />
-                </div>
-                <p>{(success == false) && message}</p>
-            </form>
-        </div>);
+        <FieldErrorContext.Provider value={{ fieldError, setFieldError }}>
+            <div className="confessform">
+                <form onSubmit={onSubmitHandler}>
+                    <Subject subject={subject} onChangeSubject={e => setSubject(e.target.value)} />
+                    <Reason reason={reason} onChangeReason={e => setReason(e.target.value)} />
+                    <Details details={details} onChangeDetails={e => setDetails(e.target.value)} />
+
+                    < div >
+                        <input type="submit" value="Confess" className={(subject == "" || reason == "" || details == "") ? "submit" : "submit submit-ls"}
+                            disabled={(subject == "" || reason == "" || details == "") ? true : false} />
+                    </div>
+                    <p>{(success == false) && message}</p>
+                    {fieldError?.map((error, index) => <p key={index}>{error}</p>)}
+
+                </form>
+            </div>
+        </FieldErrorContext.Provider>);
 }
 
 export default ConfessForm;

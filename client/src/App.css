@@ -156,7 +156,19 @@ img {
 
 .submit {
     display: inline-block;
-    text-align: center;
+    text-align: center;  
+    background-color: #00BFFF;
+    padding:10px;
+}
+
+.submit-ls {
+    color: white;
+    background-color: #00BFFF;
+}
+
+.submit-ls:hover {
+    background-color: black;
+    
 }
 
 input[type=text], textarea {
@@ -172,19 +184,8 @@ label {
     display: inline-block;
 }
 
-input[type=submit] {
-    background-color: #00BFFF;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-}
 
-    input[type=submit]:hover {
-        background-color: #000;
-    }
+
 
 textarea {
     height: 100px;
